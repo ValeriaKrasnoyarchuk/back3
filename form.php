@@ -64,7 +64,7 @@
                                 <label>
                                     Ваши сверхспособности:
                                     <br>
-                                    <select name="superpowers" multiple="multiple">
+                                    <select name="superpowers[]" multiple="multiple">
                                         <option value="Бессмертие" selected="selected">Бессмертие</option>
                                         <option value="Прохождение сквозь стены">Прохождение сквозь стены</option>
                                         <option value="Левитация">Левитация</option>
