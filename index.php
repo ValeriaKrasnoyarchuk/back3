@@ -13,7 +13,7 @@ $email = $_POST['email'];
 $date = $_POST['date'];
 $radio1 = $_POST['radio-group-1'];
 $radio2 = $_POST['radio-group-2'];
-$power = $_POST['superpowers'];
+$power = implode(',', $_POST['superpowers']);
 $bio = $_POST['biography'];
 $check1 = $_POST['check-1'];
 
