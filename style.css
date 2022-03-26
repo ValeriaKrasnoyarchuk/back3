@@ -7,6 +7,7 @@
 body{
     font-family: Arial, Helvetica, sans-serif;
     background-color: #d7e7eb;
+     border-radius: 0 10px;
 }
 header{
     height: 100px;
@@ -29,7 +30,8 @@ th{
     border: 1px solid black;
 }
 tr:nth-child(odd){
-     background-color:#9b59b6; 
+     background-color:#9b59b6;
+     border-radius: 0 10px;
 }
 tr:nth-child(even){
     background-color: #3498db; 
@@ -37,6 +39,7 @@ tr:nth-child(even){
 footer{
     height: 100px;
     background-color:#9b59b6;
+     border-radius: 0 10px;
 }
 a:hover{
     color: #1ed306;
