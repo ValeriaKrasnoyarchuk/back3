@@ -4,7 +4,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   if (!empty($_GET['save'])) {
     print('Спасибо, результаты сохранены.');
   }
-  include('index.html');
+  include('form.php');
   exit();
 }
  
@@ -62,17 +62,20 @@ if ($errors) {
   exit();
 }
 
-$user = 'u24531';
-$pass = '5078774';
-$db = new PDO('mysql:host=localhost;dbname=u24531', $user, $pass, array(PDO::ATTR_PERSISTENT => true));
+$user = 'u47505';
+$pass = '5503713';
+$db = new PDO('mysql:host=localhost;dbname=u47505', $user, $pass, array(PDO::ATTR_PERSISTENT => true));
 
-
+// Подготовленный запрос. Не именованные метки.
 try {
-  $stmt = $db->prepare("INSERT INTO form (name,email,date,radio1,radio2,power,bio,check1) VALUE(:name,:email,:date,:radio1,:radio2,:power,:bio,:check1)");
-  $stmt -> execute(['name'=>$name,'email'=>$email,'date'=>$date,'radio1'=>$radio1,'radio2'=>$radio2,'power'=>$power,'bio'=>$bio,'check1'=>$check1]);
-  print('Спасибо, результаты сохранены.<br/>');
+    $stmt = $db->prepare("INSERT INTO clients SET name = ?, email = ?, date = ?, gender = ?, limbs = ?, bio = ?, policy = ?");
+    $stmt->execute(array($name, $email, $date, $radio1, $radio2, $bio, $check1));
+    $user_id = $db->lastInsertId();
+
+    $superpowers = $db->prepare("INSERT INTO powers SET powers = ?, user_id = ? ");
+    $superpowers->execute(array($power, $user_id));
+} catch (PDOException $e) {
+    print('Error : ' . $e->getMessage());
+    exit();
 }
-catch(PDOException $e){
-  print('Error : ' . $e->getMessage());
-  exit();
-}
+header('Location: ?save=1');
